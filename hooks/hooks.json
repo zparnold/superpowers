@@ -2,11 +2,11 @@
   "hooks": {
     "SessionStart": [
       {
-        "matcher": "startup|clear|compact",
+        "matcher": "startup|clear|compact|*",
         "hooks": [
           {
             "type": "command",
-            "command": "\"${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.cmd\" session-start",
+            "command": "\"${CLAUDE_PLUGIN_ROOT:-${OPENHANDS_PLUGIN_ROOT:-${HOME}/.openhands/plugins/installed/superpowers}}/hooks/run-hook.cmd\" session-start",
             "async": false
           }
         ]
