@@ -4,7 +4,7 @@ Superpowers is a complete software development methodology for your coding agent
 
 ## Quickstart
 
-Give your agent Superpowers: [Claude Code](#claude-code), [Codex CLI](#codex-cli), [Codex App](#codex-app), [Factory Droid](#factory-droid), [Gemini CLI](#gemini-cli), [OpenCode](#opencode), [Cursor](#cursor), [GitHub Copilot CLI](#github-copilot-cli).
+Give your agent Superpowers: [Claude Code](#claude-code), [Codex CLI](#codex-cli), [Codex App](#codex-app), [Factory Droid](#factory-droid), [Gemini CLI](#gemini-cli), [OpenCode](#opencode), [OpenHands](#openhands), [Cursor](#cursor), [GitHub Copilot CLI](#github-copilot-cli).
 
 ## How it works
 
@@ -126,6 +126,32 @@ already use it in another harness.
   ```
 
 - Detailed docs: [docs/README.opencode.md](docs/README.opencode.md)
+
+### OpenHands
+
+Superpowers works with OpenHands via the [OpenHands SDK plugin system](https://docs.openhands.dev/sdk/guides/plugins).
+
+- Install the plugin using the OpenHands SDK:
+
+  ```python
+  from openhands.sdk.plugin import install_plugin
+  install_plugin(source="github:obra/superpowers")
+  ```
+
+- Or load it directly in a `Conversation`:
+
+  ```python
+  from openhands.sdk import Conversation
+  from openhands.sdk.plugin import PluginSource
+
+  conversation = Conversation(
+      agent=agent,
+      workspace=working_dir,
+      plugins=[PluginSource(source="github:obra/superpowers")],
+  )
+  ```
+
+For the session-start bootstrap to inject automatically, the SDK must resolve the plugin path. When installed via `install_plugin`, the plugin is placed at `~/.openhands/plugins/installed/superpowers/` which is used as a fallback by the hook. You can also set `OPENHANDS_PLUGIN_ROOT` to point to your local copy.
 
 ### Cursor
 
